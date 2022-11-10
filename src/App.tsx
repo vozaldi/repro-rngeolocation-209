@@ -15,6 +15,17 @@ function App() {
     }, { timeout: 10000 });
   };
 
+  const handleAuthorizationRequest = () => {
+    /**
+     * This method also executiong failed callback
+     */
+    Geolocation.requestAuthorization(() => {
+      setError('Location allowed');
+    }, ({ code }) => {
+      setError(`Unable to get location access. Code: ${code}`);
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Button
